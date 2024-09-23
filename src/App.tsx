@@ -1,20 +1,24 @@
 import { useState } from 'react'
 import './App.css'
 
+import { Expense } from './components/Expense-component'
+import { useExpenseDataStore } from './stores/ExpenseData-store'
+
 function App() {
+
 
   return (
     <>
-    <div className='flex flex-col gap-3 w-screen h-screen'>
-      <div className='bg-[#1b1b1b] top-0 h-10'>Month Navbar</div>
-      <p>Month</p>
+    <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3'>
+      <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] top-0 h-10 rounded-b-xl'>Month Navbar</div>
+      <p className='text-2xl font-semibold'>Month</p>
       <div className='flex flex-row gap-3 h-2/5'>
-        <div className='bg-[#1b1b1b] w-1/2'>Graph</div>
-        <div className='bg-[#1b1b1b] w-[30%]'>Pie Chart</div>
-        <div className='bg-[#1b1b1b] w-[20%]'>Remaining Balance</div>
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>Pie Chart</div>
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>Remaining Balance</div>
       </div>
-      <div className='flex flex-col gap-3 bg-[#1b1b1b] h-1/2'>
-        Expenses list
+      <div className='flex flex-col gap-3 overflow-y-auto overflow-x-hidden bg-[#ffffff] shadow-md shadow-[#b6b6b6] h-1/2 rounded-xl p-6'>
+        <Expense></Expense>
       </div>
     </div>
     </>

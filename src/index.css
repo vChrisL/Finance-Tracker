@@ -8,8 +8,20 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0b0b0b;
+  color: rgba(22, 22, 22, 0.87);
+  background-color: #f5f5f5;
+
+  /*
+    Colors:
+    Dark Mode?
+      background: #0b0b0b;
+      element bg: #1b1b1b;
+      color: rgba(255, 255, 255, 0.87);
+    Light mode
+      bg: #f5f5f5;
+      element bg: bg-[#ffffff] shadow-md shadow-[#b6b6b6]
+      color: rgba(22, 22, 22, 0.87);
+  */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
