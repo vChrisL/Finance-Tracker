@@ -31,8 +31,11 @@ function App() {
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>Pie Chart</div>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>Remaining Balance</div>
       </div>
-      <div className='flex flex-col gap-3 overflow-y-auto overflow-x-hidden bg-[#ffffff] shadow-md shadow-[#b6b6b6] h-1/2 rounded-xl p-6'>
-        <Expense></Expense>
+      <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>
+        <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2'>
+          <Expense></Expense>
+        </div>
+        <button className='w-[10%] p-1 ml-[90%] font-semibold bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700'>New Expense</button>
       </div>
     </div>
     </>
