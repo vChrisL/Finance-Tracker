@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3'>
-      <div className='flex flex-row justify-center gap-14 bg-[#ffffff] shadow-md shadow-[#b6b6b6] top-0 h-10 rounded-b-xl'>
+      <div className='flex flex-row flex-wrap justify-center gap-y-4 gap-14 top-0 h-auto p-2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-b-xl'>
         <button onClick={() => (setSelectedMonth('January'))}>Jan</button>
         <button onClick={() => (setSelectedMonth('February'))}>Feb</button>
         <button onClick={() => (setSelectedMonth('March'))}>Mar</button>
@@ -35,7 +35,7 @@ function App() {
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2'>
           <Expense></Expense>
         </div>
-        <button className='w-[10%] p-1 ml-[90%] font-semibold bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700'>New Expense</button>
+        <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700'>New Expense</button>
       </div>
     </div>
     </>
