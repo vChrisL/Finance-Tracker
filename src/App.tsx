@@ -1,11 +1,20 @@
 import { useState } from 'react'
 import './App.css'
 
+// Import components
 import { Expense } from './components/Expense-component'
-import { useExpenseDataStore } from './stores/ExpenseData-store'
+import { NewExpenseMenu } from './components/NewExpenseMenu-component'
+// Import Stores
+import { useExpenseStore } from './stores/ExpenseData-store'
+import { useNewExpenseMenu } from './stores/menuDisplay-store'
 
 function App() {
   const [selectedMonth, setSelectedMonth] = useState<string>('January');
+
+  // New espense menu store
+  const newExpenseMenu = useNewExpenseMenu((state) => state.showMenu);
+  const setNewExpenseMenu = useNewExpenseMenu((state) => state.setMenu);
+  
 
   return (
     <>
@@ -35,11 +44,16 @@ function App() {
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2'>
           <Expense></Expense>
         </div>
-        <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700'>New Expense</button>
+        <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700' onClick={() => setNewExpenseMenu(!newExpenseMenu)}>New Expense</button>
       </div>
+
+      {newExpenseMenu && <NewExpenseMenu></NewExpenseMenu>}
     </div>
     </>
   )
 }
 
 export default App
+
+
+// 2024-09-26 commit -m "added new expense menu store and new expense menu"

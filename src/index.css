@@ -9,6 +9,11 @@
     transition-colors ease-in duration-100
     hover:text-green-500
   }
+
+  input{
+    @apply
+    bg-[#e6e6e6] rounded-md pl-3 w-32 truncate
+  }
 }
 
 :root {

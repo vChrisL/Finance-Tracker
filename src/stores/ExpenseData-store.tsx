@@ -1,13 +1,19 @@
 import { create } from "zustand";
 
-type ExpenseDataStore = {
+type ExpenseStore = {
     id: number,
     updateID: (newID: number) => void,
     desc: string,
     updateDesc: (newDesc: string) => void,
 }
 
-export const useExpenseDataStore = create<ExpenseDataStore>((set) => ({
+type MonthlyExpenseData = {
+    id: number,
+    month: string,
+    expenses: [],
+}
+
+export const useExpenseStore = create<ExpenseStore>((set) => ({
     id: 0,
     updateID: (newID: number) => set(() => ({id: newID})),
     desc: '',
