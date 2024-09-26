@@ -54,6 +54,3 @@ function App() {
 }
 
 export default App
-
-
-// 2024-09-26 commit -m "added new expense menu store and new expense menu"

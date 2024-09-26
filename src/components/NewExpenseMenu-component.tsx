@@ -20,7 +20,14 @@ export function NewExpenseMenu(){
                 <input type="text" placeholder='desc'/>
                 <input type="text" placeholder='amount'/>
                 <input type="text" placeholder='date'/>
-                <input type="text" placeholder='category'/>
+                <select name="category" id="category">
+                  <option value="food">Food</option>
+                  <option value="rent">Rent</option>
+                  <option value="transportation">Transportation</option>
+                  <option value="utilities">Utilities</option>
+                  <option value="personal">Personal</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
             </div>
 

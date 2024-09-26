@@ -14,6 +14,10 @@
     @apply
     bg-[#e6e6e6] rounded-md pl-3 w-32 truncate
   }
+  select{
+    @apply
+    bg-[#e6e6e6] rounded-md pl-3 w-32 truncate
+  }
 }
 
 :root {
