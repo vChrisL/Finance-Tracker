@@ -31,7 +31,7 @@ export function NewExpenseMenu(){
               </div>
             </div>
 
-            <div className='flex flex-row gap-4 mt-4'>
+            <div className='flex flex-row gap-8 mt-4'>
               <button className='hover:text-red-500' onClick={() => setMenuState(!menuState)}>Discard</button>
               <button>Add</button>
             </div>
