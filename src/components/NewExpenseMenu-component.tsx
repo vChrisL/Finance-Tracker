@@ -1,8 +1,25 @@
 import { useNewExpenseMenu } from "../stores/menuDisplay-store"; 
+import { useMonthlyExpense } from "../data/expenseData";
+import { addExpensesMasterList } from "../data/expenseData";
 
 export function NewExpenseMenu(){
     const menuState = useNewExpenseMenu((state) => state.showMenu);
     const setMenuState = useNewExpenseMenu((state) => state.setMenu);
+
+    const monthlyExpenses = useMonthlyExpense((state: any) => state.storeMonthlyExpenses);
+    const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList)
+
+    let desc: string = '';
+    let amount: number = 0;
+    let date: string = '';
+    let category: string = '';
+
+  function newExpense(){
+    addExpensesMasterList({id: 1, month: 'jan', desc: desc, amount: amount, date: date, category: category})
+    setMenuState(!menuState)
+    console.log(monthlyExpenses)
+    updateMasterList();
+  }
 
     return(
         <>
@@ -17,9 +34,9 @@ export function NewExpenseMenu(){
               </div>
 
               <div className='flex flex-col gap-4'>
-                <input type="text" placeholder='desc'/>
-                <input type="text" placeholder='amount'/>
-                <input type="text" placeholder='date'/>
+                <input type="text" placeholder='desc' onChange={(e) => desc = e.target.value}/>
+                <input type="text" placeholder='0' onChange={(e) => amount = parseInt(e.target.value)}/>
+                <input type="text" placeholder='date' onChange={(e) => date = e.target.value}/>
                 <select name="category" id="category">
                   <option value="food">Food</option>
                   <option value="rent">Rent</option>
@@ -33,10 +50,12 @@ export function NewExpenseMenu(){
 
             <div className='flex flex-row gap-8 mt-4'>
               <button className='hover:text-red-500' onClick={() => setMenuState(!menuState)}>Discard</button>
-              <button>Add</button>
+              <button onClick={newExpense}>Add</button>
             </div>
           </div>
         </div>
         </>
     )
 }
+
+// <button onClick={() => {addNewExpense({id: 1, month: 'jan', desc: 'yaaaay', amount: 1000, date: '202aa4!!', category: "fooaaad"}), console.log(monthlyExpenses)}}>asdsad</button>

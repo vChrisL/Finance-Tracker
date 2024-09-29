@@ -1,6 +1,12 @@
 import { useState } from "react"
+import { IExpenseData } from "../data/expenseData";
 
-export function Expense(){
+
+interface IExpenseProps {
+    expenseData: IExpenseData
+}
+
+export function Expense({expenseData}: IExpenseProps){
     const [isEditingField, setIsEditingField] = useState({
         editingDesc: false,
         editingAmount: false,
@@ -8,11 +14,10 @@ export function Expense(){
         editingCategory: false,
     });
 
-    const [description, setDescription] = useState<string>('desc');
-    const [amount, setAmount] = useState<string>('amount');
-    const [date, setDate] = useState<string>('date');
-    const [category, setCategory] = useState<string>('category');
-
+    const [description, setDescription] = useState<string>(expenseData.desc);
+    const [amount, setAmount] = useState<number>(expenseData.amount);
+    const [date, setDate] = useState<string>(expenseData.date);
+    const [category, setCategory] = useState<string>(expenseData.category);
 
     return(
         <>
@@ -22,13 +27,13 @@ export function Expense(){
                 {isEditingField.editingDesc ? <input className="bg-[#dbdbdb]" defaultValue={description} onChange={(e) => setDescription(description === null ? 'empty' : e.target.value)} tabIndex={0} onBlur={() => setIsEditingField({...isEditingField, editingDesc: false})}></input> : <p className="min-w-20 min-h-5 align-middle">{description}</p>}
             </div>
             <div className="min-w-fit w-[15%] font-semibold truncate">
-                <p>{isEditingField.editingAmount ? 'Editing' : 'amount'}</p>
+                <p>{isEditingField.editingAmount ? 'Editing' : '$' + amount}</p>
             </div>
             <div className="min-w-fit w-[15%] truncate">
-                <p>{isEditingField.editingDate ? 'Editing' : 'date'}</p>
+                <p>{isEditingField.editingDate ? 'Editing' : date}</p>
             </div>
             <div className="min-w-fit w-[15%] truncate">
-                <p>{isEditingField.editingCategory ? 'Editing' : 'category'}</p>
+                <p>{isEditingField.editingCategory ? 'Editing' : category}</p>
             </div>
             <button className="min-w-fit w-[3%] truncate">delete</button>
         </div>
