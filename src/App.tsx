@@ -58,6 +58,9 @@ function App() {
               if(expenseItem.month === selectedMonth){
                 return(<Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>)
               }
+              else if(selectedMonth === 'Yearly'){
+                return(<Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>)
+              }
             })
           }
         </div>

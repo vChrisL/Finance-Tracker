@@ -41,6 +41,17 @@ export function NewExpenseMenu() {
     updateMasterList();
   }
 
+  function getToday(): string {
+    let date = new Date();
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let year = date.getFullYear();
+
+    let formattedDate = `${year}-${month}-${day}`
+    console.log(formattedDate)
+    return formattedDate
+  }
+
   return (
     <>
       <div className="flex justify-center absolute top-0 right-0 w-screen h-screen backdrop-blur-sm bg-[#b6b6b648]">
@@ -66,7 +77,7 @@ export function NewExpenseMenu() {
               />
               <input
                 type="date"
-                placeholder="date"
+                defaultValue={getToday()}
                 onChange={(e) => (date = e.target.value)}
               />
               <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
