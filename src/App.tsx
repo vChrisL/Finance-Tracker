@@ -86,7 +86,10 @@ function App() {
               }
             })
           } */}
-          {renderExpenses()}
+          {
+            // Add expenses to expensesList for rendering
+            renderExpenses()
+          }
           {
             // Render a Expense component for each element in expensesList
             expensesList.map((expenseItem: any, index: number) => 

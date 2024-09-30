@@ -26,6 +26,8 @@ export function Expense({id, expenseData}: IExpenseProps){
     // updateMasterList store function
     const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList)
 
+    const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
+
     // Handles deleting expense on delete button click
     function onDelete(){
         removeExpenseFromMasterList(id);
@@ -40,7 +42,7 @@ export function Expense({id, expenseData}: IExpenseProps){
                 {isEditingField.editingDesc ? <input className="bg-[#dbdbdb]" defaultValue={description} onChange={(e) => setDescription(description === null ? 'empty' : e.target.value)} tabIndex={0} onBlur={() => setIsEditingField({...isEditingField, editingDesc: false})}></input> : <p className="min-w-20 min-h-5 align-middle">{description}</p>}
             </div>
             <div className="min-w-fit w-[15%] font-semibold truncate">
-                <p>{isEditingField.editingAmount ? 'Editing' : '$' + amount}</p>
+                <p>{isEditingField.editingAmount ? 'Editing' : numberFormat.format(amount)}</p>
             </div>
             <div className="min-w-fit w-[15%] truncate">
                 <p>{isEditingField.editingDate ? 'Editing' : date}</p>
