@@ -8,7 +8,11 @@ import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 import { useNewExpenseMenu } from './stores/menuDisplay-store'
 import { useMonthlyExpense } from './data/expenseData'
 
+// Unique KeyID for expenses; this value does not change
+let keyID: number = 0;
+
 function App() {
+  // useState to keep track of the currently selected month
   const [selectedMonth, setSelectedMonth] = useState<string>('January');
 
   // New expense menu store
@@ -45,14 +49,15 @@ function App() {
       </div>
       <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2'>
-          {/* <Expense></Expense> */}
+          {/* Render monthlyExpenses components */}
           {monthlyExpenses.map((expenseItem: any, index: number) => (
-            <Expense id={index} expenseData={expenseItem}></Expense> // add data to expense to render
+            <Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>
           ))}
         </div>
         <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700' onClick={() => setNewExpenseMenu(!newExpenseMenu)}>New Expense</button>
       </div>
-
+      
+      {/* Render new expense menu */}
       {newExpenseMenu && <NewExpenseMenu></NewExpenseMenu>}
     </div>
     </>

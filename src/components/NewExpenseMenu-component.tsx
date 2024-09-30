@@ -3,21 +3,21 @@ import { useMonthlyExpense } from "../data/expenseData";
 import { addExpensesMasterList } from "../data/expenseData";
 
 export function NewExpenseMenu() {
+  // New expense menu stores
   const menuState = useNewExpenseMenu((state) => state.showMenu);
   const setMenuState = useNewExpenseMenu((state) => state.setMenu);
 
-  const monthlyExpenses = useMonthlyExpense(
-    (state: any) => state.storeMonthlyExpenses
-  );
-  const updateMasterList = useMonthlyExpense(
-    (state: any) => state.updateMasterList
-  );
+  // expenses store
+  const monthlyExpenses = useMonthlyExpense((state: any) => state.storeMonthlyExpenses);
+  const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList);
 
+  // variables to hold expense fields
   let desc: string = "";
   let amount: number = 0;
   let date: string = "yy-mm-dd";
   let category: string = "Food";
 
+  // Handles adding new expenses on add button click
   function newExpense() {
     addExpensesMasterList({
       id: 1,
@@ -27,8 +27,8 @@ export function NewExpenseMenu() {
       date: date,
       category: category,
     });
+    // Toggle the menu and update the master list
     setMenuState(!menuState);
-    console.log(monthlyExpenses);
     updateMasterList();
   }
 
@@ -61,7 +61,7 @@ export function NewExpenseMenu() {
                 onChange={(e) => (date = e.target.value)}
               />
               <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
-                <option value="Food" selected>Food</option>
+                <option value="Food">Food</option>
                 <option value="Rent">Rent</option>
                 <option value="Transportation">Transportation</option>
                 <option value="Utilities">Utilities</option>
@@ -80,5 +80,3 @@ export function NewExpenseMenu() {
     </>
   );
 }
-
-// <button onClick={() => {addNewExpense({id: 1, month: 'jan', desc: 'yaaaay', amount: 1000, date: '202aa4!!', category: "fooaaad"}), console.log(monthlyExpenses)}}>asdsad</button>
