@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 export interface IExpenseData {
-    id: number,
+    id?: number,
     month: string,
     desc: string,
     amount: number,
@@ -15,10 +15,10 @@ export interface IExpenseData {
 
 // Stores ALL expenses across every month
 let expensesMasterList = [
-    {id: 0, month: 'jan', desc: 'my desc jan', amount: 100, date: '2024-09-20', category: 'Food'},
-    {id: 1, month: '1', desc: '1', amount: 1, date: '1', category: '1'},
-    {id: 2, month: '2', desc: '2', amount: 2, date: '2', category: '2'},
-]
+    {id: 0, month: 'January', desc: 'my desc jan', amount: 100, date: '2024-01-20', category: 'Food'},
+    {id: 1, month: 'January', desc: 'January Expense', amount: 1000, date: '2024-01-03', category: 'Other'},
+    {id: 2, month: 'February', desc: 'Feb expense', amount: 4.99, date: '2024-02-07', category: 'Personal'},
+] as IExpenseData[]
 
 // Define MonthlyExpenseStore type
 type MonthlyExpenseStore = {

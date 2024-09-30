@@ -15,13 +15,22 @@ export function NewExpenseMenu() {
   let desc: string = "";
   let amount: number = 0;
   let date: string = "yy-mm-dd";
+  let month: string = "mm"
   let category: string = "Food";
+
+  const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+  // Returns the month in string format according to numerical date
+  function setMonth(): string {
+    let dateList: string[] = date.split("-");
+    return months[parseInt(dateList[1]) - 1]
+  }
 
   // Handles adding new expenses on add button click
   function newExpense() {
     addExpensesMasterList({
-      id: 1,
-      month: "jan",
+      // id: 0,
+      month: setMonth(),
       desc: desc,
       amount: amount,
       date: date,
