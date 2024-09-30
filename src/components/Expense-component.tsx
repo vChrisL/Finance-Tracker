@@ -3,10 +3,11 @@ import { IExpenseData } from "../data/expenseData";
 
 
 interface IExpenseProps {
+    id: number,
     expenseData: IExpenseData
 }
 
-export function Expense({expenseData}: IExpenseProps){
+export function Expense({id, expenseData}: IExpenseProps){
     const [isEditingField, setIsEditingField] = useState({
         editingDesc: false,
         editingAmount: false,

@@ -35,6 +35,4 @@ export function addExpensesMasterList({id, month, desc, amount, date, category}:
     expensesMasterList.push(newExpense);
 }
 
-//! How to handle expense category?
-
 // use local storage

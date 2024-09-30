@@ -47,7 +47,7 @@ function App() {
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2'>
           {/* <Expense></Expense> */}
           {monthlyExpenses.map((expenseItem: any, index: number) => (
-            <Expense expenseData={expenseItem}></Expense> // add data to expense to render
+            <Expense id={index} expenseData={expenseItem}></Expense> // add data to expense to render
           ))}
         </div>
         <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700' onClick={() => setNewExpenseMenu(!newExpenseMenu)}>New Expense</button>
