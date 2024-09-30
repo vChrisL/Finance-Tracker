@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 export interface IExpenseData {
-    id?: number,
+    id: number,
     month: string,
     desc: string,
     amount: number,
@@ -17,7 +17,11 @@ export interface IExpenseData {
 let expensesMasterList = [
     {id: 0, month: 'January', desc: 'my desc jan', amount: 100, date: '2024-01-20', category: 'Food'},
     {id: 1, month: 'January', desc: 'January Expense', amount: 1000, date: '2024-01-03', category: 'Other'},
-    {id: 2, month: 'February', desc: 'Feb expense', amount: 4.99, date: '2024-02-07', category: 'Personal'},
+    {id: 2, month: 'January', desc: 'January Expense3', amount: 13, date: '2024-01-02', category: 'Other'},
+    {id: 3, month: 'February', desc: 'Feb expense', amount: 4.99, date: '2024-02-07', category: 'Personal'},
+    {id: 4, month: 'February', desc: 'Feb expense2', amount: 499, date: '2024-02-06', category: 'Personal'},
+    {id: 5, month: 'March', desc: 'Mar expense', amount: 60, date: '2024-03-23', category: 'Food'},
+    {id: 6, month: 'March', desc: 'Mar expense2', amount: 1, date: '2024-03-20', category: 'Utilities'},
 ] as IExpenseData[]
 
 // Define MonthlyExpenseStore type
@@ -45,6 +49,13 @@ export function addExpensesMasterList({id, month, desc, amount, date, category}:
 export function removeExpenseFromMasterList(id: number){
     expensesMasterList.splice(id, 1);
     expensesMasterList = [...expensesMasterList];
+
+    // For each expense in expensesMasterList, if current expense.id != the index, shift the ID down by 1
+    expensesMasterList.forEach((expense, index) => {
+        if(expense.id != index){
+            expense.id -= 1;
+        }
+    })
     console.log(expensesMasterList)
 }
 

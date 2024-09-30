@@ -29,7 +29,7 @@ export function NewExpenseMenu() {
   // Handles adding new expenses on add button click
   function newExpense() {
     addExpensesMasterList({
-      // id: 0,
+      id: monthlyExpenses.length,
       month: setMonth(),
       desc: desc,
       amount: amount,
