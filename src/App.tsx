@@ -92,7 +92,7 @@ function App() {
           }
           {
             // Render a Expense component for each element in expensesList
-            expensesList.map((expenseItem: any, index: number) => 
+            expensesList.map((expenseItem: any) => 
               <Expense key={keyID += 1} id={expenseItem.id} expenseData={expenseItem}></Expense>
             )
           }
