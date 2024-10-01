@@ -25,8 +25,60 @@ export function Expense({id, expenseData}: IExpenseProps){
 
     // updateMasterList store function
     const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList)
-
+    // number format for CAD currency
     const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
+
+    // description component
+    const descComponent = () => {
+        // if editing desc is true, create input element
+        if(isEditingField.editingDesc){
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDesc: true})} >
+                    <input className="bg-[#dbdbdb]" 
+                    defaultValue={description} 
+                    onChange={(e) => setDescription(e.target.value)} 
+                    tabIndex={0} 
+                    onBlur={() => (
+                        setIsEditingField({...isEditingField, editingDesc: false}), 
+                        expenseData.desc = description, 
+                        updateMasterList()
+                    )}/>
+                </div>
+            )
+        }
+        else {
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDesc: true})}>
+                    <p className="min-w-20 min-h-5 align-middle">{description}</p>
+                </div>
+            )
+        }
+    }
+    // amount component
+    const amountComponent = () => {
+        if(isEditingField.editingAmount){
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingAmount: true})} >
+                    <input className="bg-[#dbdbdb]" 
+                    defaultValue={amount} 
+                    onChange={(e) => setAmount(parseFloat(e.target.value))} 
+                    tabIndex={0} 
+                    onBlur={() => (
+                        setIsEditingField({...isEditingField, editingAmount: false}), 
+                        expenseData.amount = amount, 
+                        updateMasterList()
+                    )}/>
+                </div>
+            )
+        }
+        else {
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingAmount: true})}>
+                    <p className="min-w-20 min-h-5 align-middle">{numberFormat.format(amount)}</p>
+                </div>
+            )
+        }
+    }
 
     // Handles deleting expense on delete button click
     function onDelete(){
@@ -38,14 +90,11 @@ export function Expense({id, expenseData}: IExpenseProps){
         <>
         <div className="flex flex-row justify-start content-start items-center gap-2 p-1 px-4 min-h-12 bg-[#f9f9f9] shadow-md shadow-[#b6b6b6] rounded-lg">
             <div className=" w-[2%] font-thin">{id}</div>
-            <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDesc: true})} >
-                {isEditingField.editingDesc ? <input className="bg-[#dbdbdb]" defaultValue={description} onChange={(e) => setDescription(e.target.value)} tabIndex={0} onBlur={() => (setIsEditingField({...isEditingField, editingDesc: false}), expenseData.desc = description, updateMasterList())}/> : <p className="min-w-20 min-h-5 align-middle">{description}</p>}
-            </div>
-            <div className="min-w-fit w-[15%] font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingAmount: true})}>
-                {isEditingField.editingAmount ? <input className="bg-[#dbdbdb]" defaultValue={amount} onChange={(e) => setAmount(parseInt(e.target.value))} tabIndex={0} onBlur={() => (setIsEditingField({...isEditingField, editingAmount: false}), expenseData.amount = amount, updateMasterList())}/> : <p className="min-w-20 min-h-5 align-middle">{numberFormat.format(amount)}</p>}
-            </div>
+            {descComponent()}
+            {amountComponent()}
             <div className="min-w-fit w-[15%] truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDate: true})}>
-                {isEditingField.editingDate ? <input className="bg-[#dbdbdb]" defaultValue={date} onChange={(e) => setDate(e.target.value)} tabIndex={0} onBlur={() => (setIsEditingField({...isEditingField, editingDate: false}), expenseData.date = date, updateMasterList())}/> : <p className="min-w-20 min-h-5 align-middle">{date}</p>}
+                {isEditingField.editingDate ? 
+                <input className="bg-[#dbdbdb]" defaultValue={date} onChange={(e) => setDate(e.target.value)} tabIndex={0} onBlur={() => (setIsEditingField({...isEditingField, editingDate: false}), expenseData.date = date, updateMasterList())}/> : <p className="min-w-20 min-h-5 align-middle">{date}</p>}
             </div>
             <div className="min-w-fit w-[15%] truncate">
                 <p>{isEditingField.editingCategory ? 'Editing' : category}</p>
