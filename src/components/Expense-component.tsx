@@ -30,7 +30,7 @@ export function Expense({id, expenseData}: IExpenseProps){
 
     // description component
     const descComponent = () => {
-        // if editing desc is true, create input element
+        // if editing desc is true, create input element for editing, else create a single paragraph element
         if(isEditingField.editingDesc){
             return(
                 <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDesc: true})} >
@@ -56,6 +56,7 @@ export function Expense({id, expenseData}: IExpenseProps){
     }
     // amount component
     const amountComponent = () => {
+        // if editing amount is true, create input element for editing, else create a single paragraph element
         if(isEditingField.editingAmount){
             return(
                 <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingAmount: true})} >
@@ -79,6 +80,39 @@ export function Expense({id, expenseData}: IExpenseProps){
             )
         }
     }
+    // date component
+    const dateComponent = () => {
+        // if editing amount is true, create input element for editing, else create a single paragraph element
+        const splitDate: string[] = date.split('-');
+        const finalDay: number = new Date(parseInt(splitDate[0]), parseInt(splitDate[1]), 0).getDate();
+
+        if(isEditingField.editingDate){
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDate: true})} >
+                    <input className="bg-[#dbdbdb]" 
+                    type="date"
+                    min={`${splitDate[0]}-${splitDate[1]}-01`}
+                    max={`${splitDate[0]}-${splitDate[1]}-${finalDay}`} //! continue later!
+                    defaultValue={date} 
+                    onChange={(e) => setDate(e.target.value)} 
+                    tabIndex={0} 
+                    onBlur={() => (
+                        setIsEditingField({...isEditingField, editingDate: false}), 
+                        expenseData.date = date, 
+                        updateMasterList()
+                    )}/>
+                </div>
+            )
+        }
+        else {
+            return(
+                <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDate: true})}>
+                    <p className="min-w-20 min-h-5 align-middle">{date}</p>
+                </div>
+            )
+        }
+    }
+
 
     // Handles deleting expense on delete button click
     function onDelete(){
@@ -92,10 +126,7 @@ export function Expense({id, expenseData}: IExpenseProps){
             <div className=" w-[2%] font-thin">{id}</div>
             {descComponent()}
             {amountComponent()}
-            <div className="min-w-fit w-[15%] truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDate: true})}>
-                {isEditingField.editingDate ? 
-                <input className="bg-[#dbdbdb]" defaultValue={date} onChange={(e) => setDate(e.target.value)} tabIndex={0} onBlur={() => (setIsEditingField({...isEditingField, editingDate: false}), expenseData.date = date, updateMasterList())}/> : <p className="min-w-20 min-h-5 align-middle">{date}</p>}
-            </div>
+            {dateComponent()}
             <div className="min-w-fit w-[15%] truncate">
                 <p>{isEditingField.editingCategory ? 'Editing' : category}</p>
             </div>
