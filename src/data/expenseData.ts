@@ -9,9 +9,17 @@ export interface IExpenseData {
     category: string, //? change to custom type?
 }
 
-// let MonthlyExpenses = [
-//     {id: 0, desc: 'my desc', amount: 100, date: '2024-09-20', category: 'Food'}
-// ] as IExpenseData[]
+// Stores the different possible categories for an expense
+export const expenseCategories: string[] = [
+    'Food',
+    'Rent',
+    'Transportation',
+    'Utilities',
+    'Personal',
+    'Insurance',
+    'Other',
+];
+
 
 // Stores ALL expenses across every month
 let expensesMasterList = [

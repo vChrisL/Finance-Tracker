@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { IExpenseData } from "../data/expenseData";
+import { expenseCategories, IExpenseData } from "../data/expenseData";
 import { removeExpenseFromMasterList } from "../data/expenseData";
 import { useMonthlyExpense } from "../data/expenseData";
 
@@ -112,7 +112,38 @@ export function Expense({id, expenseData}: IExpenseProps){
             )
         }
     }
-
+    // category component
+    function categoryComponent(){ //!
+        if(isEditingField.editingCategory){
+            return(
+                <div className="min-w-fit w-[15%] truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingCategory: true})}>
+                    <select className="bg-[#dbdbdb]" 
+                    defaultValue={category} 
+                    onChange={(e) => setCategory(e.target.value)} 
+                    tabIndex={0} 
+                    onBlur={() => (
+                        setIsEditingField({...isEditingField, editingCategory: false}), 
+                        expenseData.category = category, 
+                        updateMasterList()
+                    )}>
+                        {expenseCategories.map((category) => 
+                            <option value={category}>{category}</option>
+                        )}
+                    </select>
+                </div>
+            )
+        }
+        else{
+            return(
+                <div className="min-w-fit w-[15%] truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingCategory: true})}>
+                    <p>{category}</p>
+                </div>
+            )
+        }
+    }
+    {expenseCategories.map((category) => 
+        <option value={category}>{category}</option>
+    )}
 
     // Handles deleting expense on delete button click
     function onDelete(){
@@ -127,9 +158,10 @@ export function Expense({id, expenseData}: IExpenseProps){
             {descComponent()}
             {amountComponent()}
             {dateComponent()}
-            <div className="min-w-fit w-[15%] truncate">
+            {categoryComponent()}
+            {/* <div className="min-w-fit w-[15%] truncate">
                 <p>{isEditingField.editingCategory ? 'Editing' : category}</p>
-            </div>
+            </div> */}
             <button className="min-w-fit w-[3%] truncate" onClick={onDelete}>delete</button>
         </div>
         </>

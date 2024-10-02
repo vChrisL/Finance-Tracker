@@ -1,5 +1,5 @@
 import { useNewExpenseMenu } from "../stores/menuDisplay-store";
-import { useMonthlyExpense } from "../data/expenseData";
+import { expenseCategories, useMonthlyExpense } from "../data/expenseData";
 import { addExpensesMasterList } from "../data/expenseData";
 
 export function NewExpenseMenu() {
@@ -82,12 +82,10 @@ export function NewExpenseMenu() {
                 onChange={(e) => (date = e.target.value)}
               />
               <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
-                <option value="Food">Food</option>
-                <option value="Rent">Rent</option>
-                <option value="Transportation">Transportation</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Personal">Personal</option>
-                <option value="Other">Other</option>
+                {/* Create an option for each category in expenseCategories array */}
+                {expenseCategories.map((category: string) => 
+                  <option value={category}>{category}</option>
+                )}
               </select>
             </div>
           </div>
