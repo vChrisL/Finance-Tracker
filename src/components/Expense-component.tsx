@@ -92,7 +92,7 @@ export function Expense({id, expenseData}: IExpenseProps){
                     <input className="bg-[#dbdbdb]" 
                     type="date"
                     min={`${splitDate[0]}-${splitDate[1]}-01`}
-                    max={`${splitDate[0]}-${splitDate[1]}-${finalDay}`} //! continue later!
+                    max={`${splitDate[0]}-${splitDate[1]}-${finalDay}`}
                     defaultValue={date} 
                     onChange={(e) => setDate(e.target.value)} 
                     tabIndex={0} 

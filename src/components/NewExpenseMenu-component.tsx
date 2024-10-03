@@ -15,7 +15,6 @@ export function NewExpenseMenu() {
   let desc: string = "";
   let amount: number = 0;
   let date: string = "yy-mm-dd";
-  let month: string = "mm"
   let category: string = "Food";
 
   const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -53,6 +52,11 @@ export function NewExpenseMenu() {
     return formattedDate
   }
 
+  // Get the minimum and max day of the month in yyyy-mm-dd format, [0] is min, [1] is max //!iamhere
+  function getMinMaxDate(): string[] {
+    return []
+  }
+
   return (
     <>
       <div className="flex justify-center absolute top-0 right-0 w-screen h-screen backdrop-blur-sm bg-[#b6b6b648]">
@@ -78,6 +82,8 @@ export function NewExpenseMenu() {
               />
               <input
                 type="date"
+                min={getMinMaxDate()[0]}
+                max={getMinMaxDate()[1]}
                 defaultValue={getToday()}
                 onChange={(e) => (date = e.target.value)}
               />
