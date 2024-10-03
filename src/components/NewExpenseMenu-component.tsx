@@ -58,9 +58,9 @@ export function NewExpenseMenu() {
     let year = dateObject.getFullYear();
 
     const selectedMonth = useMonthStore(state => state.selectedMonth);
-    const finalDay: number = new Date(year, months.indexOf(selectedMonth) + 1, 0).getDate();
+    const finalDay: string = String(new Date(year, months.indexOf(selectedMonth) + 1, 0).getDate()).padStart(2, '0');
     
-    return [`${year}-${months.indexOf(selectedMonth) + 1}-01`, `${year}-${months.indexOf(selectedMonth) + 1}-${finalDay}`]
+    return [`${year}-${String(months.indexOf(selectedMonth) + 1).padStart(2, '0')}-01`, `${year}-${String(months.indexOf(selectedMonth) + 1).padStart(2, '0')}-${finalDay}`]
   }
 
   return (
@@ -90,7 +90,7 @@ export function NewExpenseMenu() {
                 type="date"
                 min={getMinMaxDate()[0]}
                 max={getMinMaxDate()[1]}
-                defaultValue={getToday()}
+                defaultValue={getMinMaxDate()[0]}
                 onChange={(e) => (date = e.target.value)}
               />
               <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
