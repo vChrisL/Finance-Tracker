@@ -6,7 +6,7 @@ import { Expense } from './components/Expense-component'
 import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 // Import Stores
 import { useNewExpenseMenu } from './stores/menuDisplay-store'
-import { useMonthlyExpense } from './data/expenseData'
+import { useMonthlyExpense, useMonthStore } from './data/expenseData'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -15,7 +15,10 @@ let expensesList: any = [];
 
 function App() {
   // useState to keep track of the currently selected month
-  const [selectedMonth, setSelectedMonth] = useState<string>('January');
+  // const [selectedMonth, setSelectedMonth] = useState<string>('January');
+
+  const selectedMonth = useMonthStore((state) => state.selectedMonth);
+  const setSelectedMonth = useMonthStore((state) => state.setSelectedMonth);
 
   // New expense menu store
   const newExpenseMenu = useNewExpenseMenu((state) => state.showMenu);

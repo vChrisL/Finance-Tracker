@@ -1,5 +1,5 @@
 import { useNewExpenseMenu } from "../stores/menuDisplay-store";
-import { expenseCategories, useMonthlyExpense } from "../data/expenseData";
+import { expenseCategories, useMonthlyExpense, useMonthStore } from "../data/expenseData";
 import { addExpensesMasterList } from "../data/expenseData";
 
 export function NewExpenseMenu() {
@@ -54,7 +54,13 @@ export function NewExpenseMenu() {
 
   // Get the minimum and max day of the month in yyyy-mm-dd format, [0] is min, [1] is max //!iamhere
   function getMinMaxDate(): string[] {
-    return []
+    let dateObject = new Date();
+    let year = dateObject.getFullYear();
+
+    const selectedMonth = useMonthStore(state => state.selectedMonth);
+    const finalDay: number = new Date(year, months.indexOf(selectedMonth) + 1, 0).getDate();
+    
+    return [`${year}-${months.indexOf(selectedMonth) + 1}-01`, `${year}-${months.indexOf(selectedMonth) + 1}-${finalDay}`]
   }
 
   return (

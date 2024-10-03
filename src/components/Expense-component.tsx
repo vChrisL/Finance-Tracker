@@ -113,7 +113,7 @@ export function Expense({id, expenseData}: IExpenseProps){
         }
     }
     // category component
-    function categoryComponent(){ //!
+    function categoryComponent(){
         if(isEditingField.editingCategory){
             return(
                 <div className="min-w-fit w-[15%] truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingCategory: true})}>

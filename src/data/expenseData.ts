@@ -39,13 +39,12 @@ type MonthlyExpenseStore = {
 }
 // Create zustand store
 export const useMonthlyExpense = create((set) => ({
+    // set store monthly expenses to be a copy of expensesMasterList
     storeMonthlyExpenses: [...expensesMasterList],
-
     // Update storeMonthlyExpenses to reflect expensesMasterList
     updateMasterList: (masterList: [{}]) => {
         set(() => ({storeMonthlyExpenses: expensesMasterList}));
-    }
-    
+    },
 }));
 // Handles adding new expenses to expensesMasterList
 export function addExpensesMasterList({id, month, desc, amount, date, category}: IExpenseData){
@@ -66,5 +65,17 @@ export function removeExpenseFromMasterList(id: number){
     })
     console.log(expensesMasterList)
 }
+
+type MonthStore = {
+    selectedMonth: string,
+    setSelectedMonth: (newMonth: string) => void,
+}
+
+export const useMonthStore = create<MonthStore>((set) => ({
+    selectedMonth: 'January',
+    setSelectedMonth: (newMonth) => {
+        set(() => ({selectedMonth: newMonth}))
+    }
+}))
 
 // use local storage
