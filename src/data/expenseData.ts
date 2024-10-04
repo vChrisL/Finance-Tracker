@@ -35,14 +35,14 @@ let expensesMasterList = [
 // Define MonthlyExpenseStore type
 type MonthlyExpenseStore = {
     storeMonthlyExpenses: IExpenseData[],
-    updateMasterList: (masterList: [{}]) => void,
+    updateMasterList: () => void,
 }
 // Create zustand store
-export const useMonthlyExpense = create((set) => ({
+export const useMonthlyExpense = create<MonthlyExpenseStore>((set) => ({
     // set store monthly expenses to be a copy of expensesMasterList
     storeMonthlyExpenses: [...expensesMasterList],
     // Update storeMonthlyExpenses to reflect expensesMasterList
-    updateMasterList: (masterList: [{}]) => {
+    updateMasterList: () => {
         set(() => ({storeMonthlyExpenses: expensesMasterList}));
     },
 }));
