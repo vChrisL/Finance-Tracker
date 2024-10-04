@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { expenseCategories, IExpenseData } from "../data/expenseData";
 import { removeExpenseFromMasterList } from "../data/expenseData";
 import { useMonthlyExpense } from "../data/expenseData";
@@ -159,9 +159,6 @@ export function Expense({id, expenseData}: IExpenseProps){
             {amountComponent()}
             {dateComponent()}
             {categoryComponent()}
-            {/* <div className="min-w-fit w-[15%] truncate">
-                <p>{isEditingField.editingCategory ? 'Editing' : category}</p>
-            </div> */}
             <button className="min-w-fit w-[3%] truncate" onClick={onDelete}>delete</button>
         </div>
         </>

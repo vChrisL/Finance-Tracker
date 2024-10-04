@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 
 // Import components
@@ -14,9 +13,7 @@ let keyID: number = 0;
 let expensesList: any = [];
 
 function App() {
-  // useState to keep track of the currently selected month
-  // const [selectedMonth, setSelectedMonth] = useState<string>('January');
-
+  // store to keep track of and update the selected month
   const selectedMonth = useMonthStore((state) => state.selectedMonth);
   const setSelectedMonth = useMonthStore((state) => state.setSelectedMonth);
 
@@ -45,11 +42,6 @@ function App() {
     if(expensesList.length === 0) {
       return (<div className='m-auto text-center text-3xl text-[#b6b6b631]'><p>No Expenses For {selectedMonth} Currently...</p></div>);
     }
-
-    // Render a Expense component for each element in expensesList
-    // expensesList.map(function(expenseItem: any, index: number) {
-    //   <Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>;
-    // });
   }
 
   return (
@@ -79,16 +71,6 @@ function App() {
       <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2 h-full'>
           {/* Render monthlyExpenses components */}
-          {/* {
-            monthlyExpenses.map(function(expenseItem: any, index: number) {
-              if(expenseItem.month === selectedMonth){
-                return(<Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>)
-              }
-              else if(selectedMonth === 'Yearly'){
-                return(<Expense key={keyID += 1} id={index} expenseData={expenseItem}></Expense>)
-              }
-            })
-          } */}
           {
             // Add expenses to expensesList for rendering
             renderExpenses()

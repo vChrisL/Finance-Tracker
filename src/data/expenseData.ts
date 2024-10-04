@@ -66,11 +66,13 @@ export function removeExpenseFromMasterList(id: number){
     console.log(expensesMasterList)
 }
 
+
+// Create month store type
 type MonthStore = {
     selectedMonth: string,
     setSelectedMonth: (newMonth: string) => void,
 }
-
+// Create new store to store and update selected month
 export const useMonthStore = create<MonthStore>((set) => ({
     selectedMonth: 'January',
     setSelectedMonth: (newMonth) => {
