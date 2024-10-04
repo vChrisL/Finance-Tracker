@@ -48,19 +48,19 @@ function App() {
     <>
     <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3'>
       <div className='flex flex-row flex-wrap justify-center gap-y-4 gap-14 top-0 h-auto p-2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-b-xl'>
-        <button onClick={() => (setSelectedMonth('January'))}>Jan</button>
-        <button onClick={() => (setSelectedMonth('February'))}>Feb</button>
-        <button onClick={() => (setSelectedMonth('March'))}>Mar</button>
-        <button onClick={() => (setSelectedMonth('April'))}>Apr</button>
-        <button onClick={() => (setSelectedMonth('May'))}>May</button>
-        <button onClick={() => (setSelectedMonth('June'))}>Jun</button>
-        <button onClick={() => (setSelectedMonth('July'))}>Jul</button>
-        <button onClick={() => (setSelectedMonth('August'))}>Aug</button>
-        <button onClick={() => (setSelectedMonth('September'))}>Sep</button>
-        <button onClick={() => (setSelectedMonth('October'))}>Oct</button>
-        <button onClick={() => (setSelectedMonth('November'))}>Nov</button>
-        <button onClick={() => (setSelectedMonth('December'))}>Dec</button>
-        <button onClick={() => (setSelectedMonth('Yearly'))}>Yearly</button>
+        <button onClick={() => (setSelectedMonth('January'))} className={`${selectedMonth == 'January' ? 'text-green-500 underline' : ''}`}>Jan</button>
+        <button onClick={() => (setSelectedMonth('February'))} className={`${selectedMonth == 'February' ? 'text-green-500 underline' : ''}`}>Feb</button>
+        <button onClick={() => (setSelectedMonth('March'))} className={`${selectedMonth == 'March' ? 'text-green-500 underline' : ''}`}>Mar</button>
+        <button onClick={() => (setSelectedMonth('April'))} className={`${selectedMonth == 'April' ? 'text-green-500 underline' : ''}`}>Apr</button>
+        <button onClick={() => (setSelectedMonth('May'))} className={`${selectedMonth == 'May' ? 'text-green-500 underline' : ''}`}>May</button>
+        <button onClick={() => (setSelectedMonth('June'))} className={`${selectedMonth == 'June' ? 'text-green-500 underline' : ''}`}>Jun</button>
+        <button onClick={() => (setSelectedMonth('July'))} className={`${selectedMonth == 'July' ? 'text-green-500 underline' : ''}`}>Jul</button>
+        <button onClick={() => (setSelectedMonth('August'))} className={`${selectedMonth == 'August' ? 'text-green-500 underline' : ''}`}>Aug</button>
+        <button onClick={() => (setSelectedMonth('September'))} className={`${selectedMonth == 'September' ? 'text-green-500 underline' : ''}`}>Sep</button>
+        <button onClick={() => (setSelectedMonth('October'))} className={`${selectedMonth == 'October' ? 'text-green-500 underline' : ''}`}>Oct</button>
+        <button onClick={() => (setSelectedMonth('November'))} className={`${selectedMonth == 'November' ? 'text-green-500 underline' : ''}`}>Nov</button>
+        <button onClick={() => (setSelectedMonth('December'))} className={`${selectedMonth == 'December' ? 'text-green-500 underline' : ''}`}>Dec</button>
+        <button onClick={() => (setSelectedMonth('Yearly'))} className={`${selectedMonth == 'Yearly' ? 'text-green-500 underline' : ''}`}>Yearly</button>
       </div>
       <p className='text-2xl font-semibold'>{selectedMonth.toUpperCase()}</p>
       <div className='flex flex-row gap-3 h-2/5'>
