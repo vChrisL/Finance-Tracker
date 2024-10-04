@@ -11,13 +11,15 @@ export function NewExpenseMenu() {
   const monthlyExpenses = useMonthlyExpense((state: any) => state.storeMonthlyExpenses);
   const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList);
 
+  // List of possible months
+  const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  
   // variables to hold expense fields
   let desc: string = "";
   let amount: number = 0;
-  let date: string = "yy-mm-dd";
+  let date: string = getMinMaxDate()[0];
   let category: string = "Food";
 
-  const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   // Returns the month in string format according to numerical date
   function setMonth(): string {
@@ -52,7 +54,7 @@ export function NewExpenseMenu() {
     return formattedDate
   }
 
-  // Get the minimum and max day of the month in yyyy-mm-dd format, [0] is min, [1] is max //!iamhere
+  // Get the minimum and max day of the month in yyyy-mm-dd format, [0] is min, [1] is max
   function getMinMaxDate(): string[] {
     let dateObject = new Date();
     let year = dateObject.getFullYear();
@@ -67,45 +69,50 @@ export function NewExpenseMenu() {
     <>
       <div className="flex justify-center absolute top-0 right-0 w-screen h-screen backdrop-blur-sm bg-[#b6b6b648]">
         <div className="flex flex-col justify-around items-center p-6 bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-fit h-fit top-0 right-0 translate-y-1/2 rounded-xl">
-          <div className="flex flex-row gap-4">
-            <div className="flex flex-col gap-4 text-right font-semibold">
-              <p>Description:</p>
-              <p>Amount:</p>
-              <p>Date:</p>
-              <p>Category:</p>
+          {/* <form className="flex flex-col justify-center items-center"> */}
+            <div className="flex flex-row gap-4">
+              <div className="flex flex-col gap-4 text-right font-semibold">
+                <p>Description:</p>
+                <p>Amount:</p>
+                <p>Date:</p>
+                <p>Category:</p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <input
+                  type="text"
+                  required
+                  placeholder="desc"
+                  onChange={(e) => (desc = e.target.value)}
+                />
+                <input
+                  type="text"
+                  required
+                  placeholder="0"
+                  onChange={(e) => (amount = parseInt(e.target.value))}
+                />
+                <input
+                  type="date"
+                  required
+                  min={getMinMaxDate()[0]}
+                  max={getMinMaxDate()[1]}
+                  defaultValue={getMinMaxDate()[0]}
+                  onChange={(e) => (date = e.target.value)}
+                />
+                <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
+                  {/* Create an option for each category in expenseCategories array */}
+                  {expenseCategories.map((category: string) => 
+                    <option value={category}>{category}</option>
+                  )}
+                </select>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <input
-                type="text"
-                placeholder="desc"
-                onChange={(e) => (desc = e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="0"
-                onChange={(e) => (amount = parseInt(e.target.value))}
-              />
-              <input
-                type="date"
-                min={getMinMaxDate()[0]}
-                max={getMinMaxDate()[1]}
-                defaultValue={getMinMaxDate()[0]}
-                onChange={(e) => (date = e.target.value)}
-              />
-              <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
-                {/* Create an option for each category in expenseCategories array */}
-                {expenseCategories.map((category: string) => 
-                  <option value={category}>{category}</option>
-                )}
-              </select>
+            <div className="flex flex-row gap-8 mt-4">
+              <button className="hover:text-red-500" onClick={() => setMenuState(!menuState)}>Discard</button>
+              <button onClick={newExpense}>Add</button>
             </div>
-          </div>
-
-          <div className="flex flex-row gap-8 mt-4">
-            <button className="hover:text-red-500" onClick={() => setMenuState(!menuState)}>Discard</button>
-            <button onClick={newExpense}>Add</button>
-          </div>
+          {/* </form> */}
         </div>
       </div>
     </>
