@@ -20,6 +20,8 @@ export function NewExpenseMenu() {
   let date: string = getMinMaxDate()[0];
   let category: string = "Food";
 
+  // get currently selected month from store
+  var selectedMonth = useMonthStore(state => state.selectedMonth);
 
   // Returns the month in string format according to numerical date
   function setMonth(): string {
@@ -59,7 +61,6 @@ export function NewExpenseMenu() {
     let dateObject = new Date();
     let year = dateObject.getFullYear();
 
-    const selectedMonth = useMonthStore(state => state.selectedMonth);
     const finalDay: string = String(new Date(year, months.indexOf(selectedMonth) + 1, 0).getDate()).padStart(2, '0');
     
     return [`${year}-${String(months.indexOf(selectedMonth) + 1).padStart(2, '0')}-01`, `${year}-${String(months.indexOf(selectedMonth) + 1).padStart(2, '0')}-${finalDay}`]
@@ -97,7 +98,7 @@ export function NewExpenseMenu() {
                   required
                   min={getMinMaxDate()[0]}
                   max={getMinMaxDate()[1]}
-                  defaultValue={getMinMaxDate()[0]}
+                  defaultValue={selectedMonth === 'Yearly' ? getToday() : getMinMaxDate()[0]}
                   onChange={(e) => (date = e.target.value)}
                 />
                 <select name="category" id="category" onChange={(e) => (category = e.target.value)}>
