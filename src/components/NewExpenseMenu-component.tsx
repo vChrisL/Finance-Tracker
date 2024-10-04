@@ -1,5 +1,5 @@
 import { useNewExpenseMenu } from "../stores/menuDisplay-store";
-import { expenseCategories, useMonthlyExpense, useMonthStore } from "../data/expenseData";
+import { expenseCategories, useExpensesList, useMonthStore } from "../data/expenseData";
 import { addExpensesMasterList } from "../data/expenseData";
 
 export function NewExpenseMenu() {
@@ -8,8 +8,8 @@ export function NewExpenseMenu() {
   const setMenuState = useNewExpenseMenu((state) => state.setMenu);
 
   // expenses store
-  const monthlyExpenses = useMonthlyExpense((state: any) => state.storeMonthlyExpenses);
-  const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList);
+  const monthlyExpenses = useExpensesList((state: any) => state.storeMonthlyExpenses);
+  const updateMasterList = useExpensesList((state: any) => state.updateMasterList);
 
   // List of possible months
   const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

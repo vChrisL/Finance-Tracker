@@ -5,7 +5,7 @@ import { Expense } from './components/Expense-component'
 import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 // Import Stores
 import { useNewExpenseMenu } from './stores/menuDisplay-store'
-import { useMonthlyExpense, useMonthStore } from './data/expenseData'
+import { useExpensesList, useMonthStore } from './data/expenseData'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -22,7 +22,7 @@ function App() {
   const setNewExpenseMenu = useNewExpenseMenu((state) => state.setMenu);
   
   // Expense states
-  const monthlyExpenses = useMonthlyExpense((state: any) => state.storeMonthlyExpenses)
+  const monthlyExpenses = useExpensesList((state: any) => state.storeMonthlyExpenses)
 
   function renderExpenses(){
     // Empty expensesList array
@@ -62,12 +62,15 @@ function App() {
         <button onClick={() => (setSelectedMonth('December'))} className={`${selectedMonth == 'December' ? 'text-green-500 underline' : ''}`}>Dec</button>
         <button onClick={() => (setSelectedMonth('Yearly'))} className={`${selectedMonth == 'Yearly' ? 'text-green-500 underline' : ''}`}>Yearly</button>
       </div>
+      
       <p className='text-2xl font-semibold'>{selectedMonth.toUpperCase()}</p>
+
       <div className='flex flex-row gap-3 h-2/5'>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>Pie Chart</div>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>Remaining Balance</div>
       </div>
+      
       <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>
         <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2 h-full'>
           {/* Render monthlyExpenses components */}
@@ -82,6 +85,7 @@ function App() {
             )
           }
         </div>
+        
         <button className='w-[10%] p-1 ml-[90%] font-semibold text-ellipsis overflow-clip bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-md hover:bg-green-500 hover:text-white active:bg-green-700' onClick={() => setNewExpenseMenu(!newExpenseMenu)}>New Expense</button>
       </div>
       

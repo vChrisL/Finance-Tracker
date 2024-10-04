@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { expenseCategories, IExpenseData } from "../data/expenseData";
 import { removeExpenseFromMasterList } from "../data/expenseData";
-import { useMonthlyExpense } from "../data/expenseData";
+import { useExpensesList } from "../data/expenseData";
 
 interface IExpenseProps {
     id: number,
@@ -24,7 +24,7 @@ export function Expense({id, expenseData}: IExpenseProps){
     const [category, setCategory] = useState<string>(expenseData.category);
 
     // updateMasterList store function
-    const updateMasterList = useMonthlyExpense((state: any) => state.updateMasterList)
+    const updateMasterList = useExpensesList((state: any) => state.updateMasterList)
     // number format for CAD currency
     const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
 
