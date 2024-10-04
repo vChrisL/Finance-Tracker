@@ -14,14 +14,14 @@ export function NewExpenseMenu() {
   // List of possible months
   const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   
+  // get currently selected month from store
+  const selectedMonth = useMonthStore(state => state.selectedMonth);
+
   // variables to hold expense fields
   let desc: string = "";
   let amount: number = 0;
   let date: string = getMinMaxDate()[0];
   let category: string = "Food";
-
-  // get currently selected month from store
-  var selectedMonth = useMonthStore(state => state.selectedMonth);
 
   // Returns the month in string format according to numerical date
   function setMonth(): string {
