@@ -86,10 +86,11 @@ export function NewExpenseMenu() {
                   onChange={(e) => (desc = e.target.value)}
                 />
                 <input
-                  type="text"
+                  type="number"
+                  step="0.01"
                   required
                   placeholder="0"
-                  onChange={(e) => (amount = parseInt(e.target.value))}
+                  onChange={(e) => (amount = parseFloat(e.target.value))}
                 />
                 <input
                   type="date"

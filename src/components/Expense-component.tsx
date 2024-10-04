@@ -35,6 +35,7 @@ export function Expense({id, expenseData}: IExpenseProps){
             return(
                 <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingDesc: true})} >
                     <input className="bg-[#dbdbdb]" 
+                    type="text"
                     defaultValue={description} 
                     onChange={(e) => setDescription(e.target.value)} 
                     tabIndex={0} 
@@ -61,6 +62,8 @@ export function Expense({id, expenseData}: IExpenseProps){
             return(
                 <div className="w-1/2 font-semibold truncate" onDoubleClick={() => setIsEditingField({...isEditingField, editingAmount: true})} >
                     <input className="bg-[#dbdbdb]" 
+                    type="number"
+                    step="0.01"
                     defaultValue={amount} 
                     onChange={(e) => setAmount(parseFloat(e.target.value))} 
                     tabIndex={0} 
