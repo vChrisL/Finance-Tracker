@@ -27,6 +27,7 @@ export function ProgressBar({value, low, mid, high}: IProgressBarProps){
         }
     }
 
+    // Progressbar styling for width and color
     const progressBarStyle: CSSProperties = {
         width: `${value}%`,
         backgroundColor: `${calcColorRange()}`
