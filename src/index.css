@@ -8,6 +8,7 @@
     font-semibold
     transition-colors ease-in duration-100
     hover:text-green-500
+    active:text-green-600
   }
 
   input{

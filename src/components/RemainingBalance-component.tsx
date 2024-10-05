@@ -1,4 +1,5 @@
 import { useExpensesList, expenseCategories, useMonthStore } from "../data/expenseData";
+import { ProgressBar } from "./Progressbar-component";
 
 export function RemainingBalance(){
     // use storeExpenses store and selectedMonth store
@@ -25,10 +26,12 @@ export function RemainingBalance(){
 
     return(
         <>
-        <div className="p-4">
-            <h2 className="font-semibold text-xl">Remaining Budget:</h2>
-            <hr className="my-2 border-2 rounded-full"/>
-            <h2 className="font-semibold text-md">Spending Breakdown For {selectedMonth}</h2>
+        <div className="h-full p-4 overflow-y-auto">
+            <h2 className="font-semibold text-xl">Remaining Budget: $000,000</h2>
+
+            <ProgressBar value={91} low={50} mid={60} high={80}></ProgressBar>
+
+            <h2 className="font-semibold text-md">Spending Breakdown For <span className="text-green-500">{selectedMonth}</span></h2>
             <div className="pl-5">
                 <ul className="pl-5">
                     {expenseCategories.map((category) => 
