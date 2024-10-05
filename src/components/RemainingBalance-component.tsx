@@ -26,13 +26,15 @@ export function RemainingBalance(){
     return(
         <>
         <div className="p-4">
-            <h2 className="font-semibold text-xl">Remaining Budget:</h2>
-
-            <ul className="">
-                {expenseCategories.map((category) => 
-                    <p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>
-                )}
-            </ul>
+            <h2 className="font-semibold text-xl mb-2">Remaining Budget:</h2>
+            <h2 className="font-semibold text-md">Spending Breakdown</h2>
+            <div className="pl-5">
+                <ul className="pl-5">
+                    {expenseCategories.map((category) => 
+                        <li className="list-disc mb-1"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
+                    )}
+                </ul>
+            </div>
         </div>
         </>
     )
