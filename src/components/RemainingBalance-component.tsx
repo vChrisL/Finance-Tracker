@@ -46,7 +46,7 @@ export function RemainingBalance(){
         <div className="h-full p-4 overflow-y-auto">
             <h2 className="font-semibold text-xl">Remaining Budget: {numberFormat.format(budget - getTotalSpending())}</h2>
 
-            <ProgressBar value={91} low={50} mid={60} high={80}></ProgressBar>
+            <ProgressBar value={(getTotalSpending() / budget) * 100} low={50} mid={60} high={80}></ProgressBar>
 
             <h2 className="font-semibold text-md">Spending Breakdown For <span className="text-green-500">{selectedMonth}</span></h2>
             <div className="pl-5">
