@@ -14,12 +14,8 @@ export function RemainingBalance(){
 
         // for each expense in the master expense list
         masterExpenseList.forEach(expense => {
-            if(selectedMonth === "Yearly" && expense.category === targetCategory) {
-                tempTotal += expense.amount;
-                return;
-            }
             // if expense category is equal to the target category; add it's value to the total
-            else if(expense.category === targetCategory && expense.month === selectedMonth){
+            if(expense.category === targetCategory && (expense.month === selectedMonth || selectedMonth === 'Yearly')){
                 tempTotal += expense.amount;
             }
         });
