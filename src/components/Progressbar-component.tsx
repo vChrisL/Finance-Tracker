@@ -34,7 +34,7 @@ export function ProgressBar({value, low, mid, high}: IProgressBarProps){
     }
 
     return (
-        <div className="h-2 w-full my-2 bg-black rounded-full border-[1px] border-gray-200">
+        <div className="h-2 w-full my-2 bg-[#f5f5f5] rounded-full border-[1px] border-gray-100">
             <div className={`h-full rounded-full`} style={progressBarStyle}></div>
         </div>
     );
