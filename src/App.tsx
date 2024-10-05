@@ -1,11 +1,12 @@
 import './App.css'
 
-// Import components
-import { Expense } from './components/Expense-component'
-import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 // Import Stores
 import { useNewExpenseMenu } from './stores/menuDisplay-store'
 import { useExpensesList, useMonthStore } from './data/expenseData'
+// Import components
+import { Expense } from './components/Expense-component'
+import { NewExpenseMenu } from './components/NewExpenseMenu-component'
+import { RemainingBalance } from './components/RemainingBalance-component'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -22,7 +23,7 @@ function App() {
   const setNewExpenseMenu = useNewExpenseMenu((state) => state.setMenu);
   
   // Expense states
-  const monthlyExpenses = useExpensesList((state: any) => state.storeMonthlyExpenses)
+  const monthlyExpenses = useExpensesList((state: any) => state.storeExpenses)
 
   function renderExpenses(){
     // Empty expensesList array
@@ -67,8 +68,12 @@ function App() {
 
       <div className='flex flex-row gap-3 h-2/5'>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
+
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>Pie Chart</div>
-        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>Remaining Balance</div>
+        
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>
+          <RemainingBalance></RemainingBalance>
+        </div>
       </div>
       
       <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>

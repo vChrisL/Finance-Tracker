@@ -8,7 +8,7 @@ export function NewExpenseMenu() {
   const setMenuState = useNewExpenseMenu((state) => state.setMenu);
 
   // expenses store
-  const monthlyExpenses = useExpensesList((state: any) => state.storeMonthlyExpenses);
+  const monthlyExpenses = useExpensesList((state: any) => state.storeExpenses);
   const updateMasterList = useExpensesList((state: any) => state.updateMasterList);
 
   // List of possible months
