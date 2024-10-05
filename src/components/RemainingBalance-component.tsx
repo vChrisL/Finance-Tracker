@@ -1,10 +1,13 @@
 import { useExpensesList, expenseCategories, useMonthStore } from "../data/expenseData";
+import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { ProgressBar } from "./Progressbar-component";
 
 export function RemainingBalance(){
     // use storeExpenses store and selectedMonth store
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
+
+    const budget = useMonthlyBudgetStore(state => state.budget);
 
     // number format for currency
     const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
@@ -24,10 +27,24 @@ export function RemainingBalance(){
         return tempTotal;
     }
 
+    // Handles getting the sum of all expenses
+    function getTotalSpending(): number{
+        let spending: number = 0;
+
+        // for each expense in the master expense list, sum expenses
+        masterExpenseList.forEach(expense => {
+            if(expense.month === selectedMonth){
+                spending += expense.amount;
+            }
+        });
+
+        return spending;
+    }
+
     return(
         <>
         <div className="h-full p-4 overflow-y-auto">
-            <h2 className="font-semibold text-xl">Remaining Budget: $000,000</h2>
+            <h2 className="font-semibold text-xl">Remaining Budget: {numberFormat.format(budget - getTotalSpending())}</h2>
 
             <ProgressBar value={91} low={50} mid={60} high={80}></ProgressBar>
 
