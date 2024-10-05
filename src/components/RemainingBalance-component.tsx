@@ -14,8 +14,12 @@ export function RemainingBalance(){
 
         // for each expense in the master expense list
         masterExpenseList.forEach(expense => {
+            if(selectedMonth === "Yearly" && expense.category === targetCategory) {
+                tempTotal += expense.amount;
+                return;
+            }
             // if expense category is equal to the target category; add it's value to the total
-            if(expense.category === targetCategory && expense.month === selectedMonth){
+            else if(expense.category === targetCategory && expense.month === selectedMonth){
                 tempTotal += expense.amount;
             }
         });
@@ -26,12 +30,13 @@ export function RemainingBalance(){
     return(
         <>
         <div className="p-4">
-            <h2 className="font-semibold text-xl mb-2">Remaining Budget:</h2>
-            <h2 className="font-semibold text-md">Spending Breakdown</h2>
+            <h2 className="font-semibold text-xl">Remaining Budget:</h2>
+            <hr className="my-2 border-2 rounded-full"/>
+            <h2 className="font-semibold text-md">Spending Breakdown For {selectedMonth}</h2>
             <div className="pl-5">
                 <ul className="pl-5">
                     {expenseCategories.map((category) => 
-                        <li className="list-disc mb-1"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
+                        <li className="list-disc mb-2 px-2 w-fit"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
                     )}
                 </ul>
             </div>
