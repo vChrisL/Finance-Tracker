@@ -70,11 +70,11 @@ function App() {
         <button onClick={() => (setSelectedMonth('Yearly'))} className={`${selectedMonth == 'Yearly' ? 'text-green-500 underline' : ''}`}>Yearly</button>
       </div>
       
-      <div className=''>
+      <div>
         <p className='text-2xl font-semibold'>{selectedMonth.toUpperCase()}</p>
 
         <div className='flex flex-row w-fit'>
-          <label className='font-semibold'>Monthly Budget: $</label>
+          <label className='font-semibold'>Monthly Budget:</label>
           <DoubleClickInput type='number' step={0.01} pValue={budget} updateStore={updateBudget}></DoubleClickInput>
         </div>
       </div>

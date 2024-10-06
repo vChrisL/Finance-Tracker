@@ -3,13 +3,17 @@ import React, { useState } from "react"
 interface IDoubleClickInputProps{
     type: React.HTMLInputTypeAttribute,
     step: number,
-    pValue: string | number,
+    pValue: number,
     updateStore: any,
 }
 
 export function DoubleClickInput({type, step, pValue, updateStore}: IDoubleClickInputProps){
+    // is editing state
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    // temp new value
     let newValue: string | number = pValue;
+    // number format
+    const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
 
     const input = () => {
         // if editing amount is true, create input element for editing, else create a single paragraph element
@@ -31,7 +35,7 @@ export function DoubleClickInput({type, step, pValue, updateStore}: IDoubleClick
         }
         else {
             return(
-                <p onDoubleClick={() => setIsEditing(true)}>{pValue}</p>
+                <p className="pl-1" onDoubleClick={() => setIsEditing(true)}>{numberFormat.format(pValue)}</p>
             )
         }
     }
