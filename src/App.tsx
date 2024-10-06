@@ -7,6 +7,8 @@ import { useExpensesList, useMonthStore } from './data/expenseData'
 import { Expense } from './components/Expense-component'
 import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 import { RemainingBalance } from './components/RemainingBalance-component'
+import { DoubleClickInput } from './components/InputDoubleClick-component'
+import { useMonthlyBudgetStore } from './stores/monthlyBalance-store'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -24,6 +26,10 @@ function App() {
   
   // Expense states
   const monthlyExpenses = useExpensesList((state: any) => state.storeExpenses)
+
+  // Budget store
+  const budget = useMonthlyBudgetStore(state => state.budget);
+  const updateBudget = useMonthlyBudgetStore(state => state.updateBudget);
 
   function renderExpenses(){
     // Empty expensesList array
@@ -64,7 +70,14 @@ function App() {
         <button onClick={() => (setSelectedMonth('Yearly'))} className={`${selectedMonth == 'Yearly' ? 'text-green-500 underline' : ''}`}>Yearly</button>
       </div>
       
-      <p className='text-2xl font-semibold'>{selectedMonth.toUpperCase()}</p>
+      <div className=''>
+        <p className='text-2xl font-semibold'>{selectedMonth.toUpperCase()}</p>
+
+        <div className='flex flex-row w-fit'>
+          <label className='font-semibold'>Monthly Budget: $</label>
+          <DoubleClickInput type='number' step={0.01} pValue={budget} updateStore={updateBudget}></DoubleClickInput>
+        </div>
+      </div>
 
       <div className='flex flex-row gap-3 h-2/5'>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
