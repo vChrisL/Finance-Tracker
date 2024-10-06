@@ -25,7 +25,7 @@ function App() {
   const setNewExpenseMenu = useNewExpenseMenu((state) => state.setMenu);
   
   // Expense states
-  const monthlyExpenses = useExpensesList((state: any) => state.storeExpenses)
+  const monthlyExpenses = useExpensesList((state: any) => state.storeExpenses);
 
   // Budget store
   const budget = useMonthlyBudgetStore(state => state.budget);

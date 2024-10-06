@@ -59,12 +59,11 @@ export function RemainingBalance(){
     return(
         <>
         <div className="h-full p-4 overflow-y-auto">
-            {/* <h2 className="font-semibold text-xl">Remaining Budget For: {numberFormat.format(budget - getTotalSpending())}</h2> */}
-            <h2 className="font-semibold text-xl">{setRemainingBudgetDisplay()}</h2>
+            <h2 className="font-semibold text-xl text-wrap">{setRemainingBudgetDisplay()}</h2>
 
             <ProgressBar value={setProgressBarValue()} low={50} mid={60} high={80}></ProgressBar>
 
-            <h2 className="font-semibold text-md">Spending Breakdown For <span className="text-green-500">{selectedMonth}</span></h2>
+            <h2 className="font-semibold text-md mb-1">Spending Breakdown For <span className="text-green-500">{selectedMonth}</span></h2>
             <div className="pl-5">
                 <ul className="pl-5">
                     {expenseCategories.map((category) => 

@@ -13,16 +13,17 @@ export function DoubleClickInput({type, step, pValue, updateStore}: IDoubleClick
     // temp new value
     let newValue: string | number = pValue;
     // number format
-    const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
+    const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'});
 
+    // Input component
     const input = () => {
         // if editing amount is true, create input element for editing, else create a single paragraph element
         if(isEditing){
             return(
                 <div className="w-fit font-semibold truncate" onDoubleClick={() => setIsEditing(true)} >
                     <input className="bg-[#dbdbdb]" 
-                    type="number"
-                    step="0.01"
+                    type={type}
+                    step={step}
                     defaultValue={pValue} 
                     onChange={(e) => newValue = e.target.value} // set budget here 
                     tabIndex={0} 
