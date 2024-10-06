@@ -33,7 +33,7 @@ export function RemainingBalance(){
 
         // for each expense in the master expense list, sum expenses
         masterExpenseList.forEach(expense => {
-            if(expense.month === selectedMonth){
+            if(expense.month === selectedMonth || selectedMonth === 'Yearly'){
                 spending += expense.amount;
             }
         });
@@ -41,12 +41,28 @@ export function RemainingBalance(){
         return spending;
     }
 
+    // Handles displaying the proper text for remaining budget display text
+    function setRemainingBudgetDisplay(): string{
+        if(selectedMonth === 'Yearly'){
+            return `Remaining Yearly Budget: ${numberFormat.format((budget * 12) - getTotalSpending())}`
+        }
+        else return `Remaining Budget: ${numberFormat.format(budget - getTotalSpending())}`
+    }
+    // Handles setting the proper value for the progress bar component
+    function setProgressBarValue(): number{
+        if(selectedMonth === 'Yearly'){
+            return (getTotalSpending() / (budget * 12)) * 100
+        }
+        else return (getTotalSpending() / budget) * 100
+    }
+
     return(
         <>
         <div className="h-full p-4 overflow-y-auto">
-            <h2 className="font-semibold text-xl">Remaining Budget For: {numberFormat.format(budget - getTotalSpending())}</h2>
+            {/* <h2 className="font-semibold text-xl">Remaining Budget For: {numberFormat.format(budget - getTotalSpending())}</h2> */}
+            <h2 className="font-semibold text-xl">{setRemainingBudgetDisplay()}</h2>
 
-            <ProgressBar value={(getTotalSpending() / budget) * 100} low={50} mid={60} high={80}></ProgressBar>
+            <ProgressBar value={setProgressBarValue()} low={50} mid={60} high={80}></ProgressBar>
 
             <h2 className="font-semibold text-md">Spending Breakdown For <span className="text-green-500">{selectedMonth}</span></h2>
             <div className="pl-5">
