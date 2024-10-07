@@ -47,7 +47,7 @@ function App() {
 
     // Display an element indicating that there is currently no expenses for this month
     if(expensesList.length === 0) {
-      return (<div className='m-auto text-center text-3xl text-[#b6b6b631]'><p>No Expenses For {selectedMonth} Currently...</p></div>);
+      return (<div className='m-auto text-center text-3xl text-[#b6b6b631]'><p>No Expenses For {selectedMonth}</p></div>);
     }
   }
 

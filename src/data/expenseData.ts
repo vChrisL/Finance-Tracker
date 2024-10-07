@@ -20,7 +20,6 @@ export const expenseCategories: string[] = [
     'Other',
 ];
 
-
 // Stores ALL expenses across every month
 let expensesMasterList = [
     {id: 0, month: 'January', desc: 'my desc jan', amount: 100, date: '2024-01-20', category: 'Food'},
