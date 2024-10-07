@@ -90,7 +90,7 @@ function App() {
       </div>
       
       <div className='flex flex-col justify-between gap-6 h-1/2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-xl p-6'>
-        <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2 h-full'>
+        <div className='flex flex-col gap-6 overflow-x-hidden overflow-y-auto p-2 h-80'>
           {/* Render monthlyExpenses components */}
           {
             // Add expenses to expensesList for rendering
