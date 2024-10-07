@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-    <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3'>
+    <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3 box-border'>
       <div className='flex flex-row flex-wrap justify-center gap-y-4 gap-14 top-0 h-auto p-2 bg-[#ffffff] shadow-md shadow-[#b6b6b6] rounded-b-xl'>
         <button onClick={() => (setSelectedMonth('January'))} className={`${selectedMonth == 'January' ? 'text-green-500 underline' : ''}`}>Jan</button>
         <button onClick={() => (setSelectedMonth('February'))} className={`${selectedMonth == 'February' ? 'text-green-500 underline' : ''}`}>Feb</button>

@@ -19,6 +19,27 @@
     @apply
     bg-[#e6e6e6] rounded-md pl-3 w-32 truncate
   }
+  
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply
+    w-2
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply
+    bg-slate-100 rounded-full
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply
+    bg-[#b6b6b6] rounded-full
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply
+    bg-[#919191]
+  }
 }
 
 :root {
