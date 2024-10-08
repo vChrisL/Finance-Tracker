@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
 import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
@@ -15,6 +15,17 @@ export function PieChartDisplay() {
 
     // use a map to populate this data dynamically depending on categories available
     let data: any = [];
+    
+    const RADIAN = Math.PI / 180;
+    const PIE_COLORS = {
+        'Food': '#0088FE', 
+        'Rent': '#00C49F', 
+        'Transportation':'#FFBB28', 
+        'Utilities':'#FF8042', 
+        'Personal':'#a500fe', 
+        'Insurance':'#fe009d', 
+        'Other':'#eb1e1e'
+    };
 
     // Handles getting the total for each category
     function getCategoryTotalSpending(targetCategory: string): number{
@@ -62,11 +73,27 @@ export function PieChartDisplay() {
             const tempData = {name: category, value: categorySpendingSum};
             data.push(tempData);
         })
+        console.table(data);
     }
-
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const RADIAN = Math.PI / 180;
+    // Handles returning the proper color to each category in the pie chart
+    function SetPieSectionColor(data: any){
+        switch(data.name){
+            case 'Food':
+                return PIE_COLORS.Food;
+            case 'Rent':
+                return PIE_COLORS.Rent;
+            case 'Transportation':
+                return PIE_COLORS.Transportation;
+            case 'Utilities':
+                return PIE_COLORS.Utilities;
+            case 'Personal':
+                return PIE_COLORS.Personal;
+            case 'Insurance':
+                return PIE_COLORS.Insurance;
+            case 'Other':
+                return PIE_COLORS.Other;
+        }
+    }
 
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
       const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -103,9 +130,10 @@ export function PieChartDisplay() {
                             dataKey="value"
                             >
                                 {data.map((entry: any, index: number) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    <Cell key={`cell-${index}`} fill={SetPieSectionColor(entry)} />
                                 ))}
                             </Pie>
+                            <Tooltip></Tooltip>
                         </PieChart>
                     </ResponsiveContainer>
                     <div>
