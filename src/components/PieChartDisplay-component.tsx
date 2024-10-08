@@ -107,22 +107,41 @@ export function PieChartDisplay() {
       );
     };
 
+    // Render entire pie chart spending breakdown 
     const renderPieChartDisplay = () => {
         PopulateMonthData();
 
         // Custom tooltip
         const CustomTooltip = ({active, payload}: TooltipProps<ValueType, NameType>)  => {
             if (active && payload && payload.length) {
-                console.log(payload)
                 return (
-                <div className="bg-white shadow-md shadow-[#b6b6b6] rounded-md p-2">
-                    <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
-                </div>
+                    <div className="bg-white shadow-md shadow-[#b6b6b6] rounded-md p-2">
+                        <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
+                    </div>
                 );
             }
             
             return null;
         };
+        // Populate categories breakdown with respective colors
+        const PopulateCateogies = (category: string) => {
+            switch(category){
+                case 'Food':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Food}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Rent':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Rent}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Transportation':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Transportation}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Utilities':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Utilities}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Personal':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Personal}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Insurance':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Insurance}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                case 'Other':
+                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Other}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+            }
+        }
 
         // if data is empty, display to user that there is no data to be displayed
         if(data === undefined || data.length === 0){
@@ -139,7 +158,7 @@ export function PieChartDisplay() {
                             cy="50%"
                             labelLine={false}
                             label={renderCustomizedLabel}
-                            outerRadius={80}
+                            outerRadius={100}
                             fill="#8884d8"
                             dataKey="value"
                             >
@@ -153,7 +172,7 @@ export function PieChartDisplay() {
                     <div>
                         <ul>
                             {expenseCategories.map((category) => 
-                                <li className="list-disc mb-1 px-2 w-fit"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
+                                <li className="list-disc mb-1 px-2 w-fit">{PopulateCateogies(category)}</li>
                             )}
                         </ul>
                     </div>
