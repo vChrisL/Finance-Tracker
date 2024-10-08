@@ -1,7 +1,9 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, TooltipProps } from "recharts";
 import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
 import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
+import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
+import { CSSProperties } from "react";
 
 
 export function PieChartDisplay() {
@@ -15,7 +17,7 @@ export function PieChartDisplay() {
 
     // use a map to populate this data dynamically depending on categories available
     let data: any = [];
-    
+
     const RADIAN = Math.PI / 180;
     const PIE_COLORS = {
         'Food': '#0088FE', 
@@ -24,7 +26,7 @@ export function PieChartDisplay() {
         'Utilities':'#FF8042', 
         'Personal':'#a500fe', 
         'Insurance':'#fe009d', 
-        'Other':'#eb1e1e'
+        'Other':'#17e6d1'
     };
 
     // Handles getting the total for each category
@@ -73,7 +75,6 @@ export function PieChartDisplay() {
             const tempData = {name: category, value: categorySpendingSum};
             data.push(tempData);
         })
-        console.table(data);
     }
     // Handles returning the proper color to each category in the pie chart
     function SetPieSectionColor(data: any){
@@ -110,6 +111,20 @@ export function PieChartDisplay() {
     const renderPieChartDisplay = () => {
         PopulateMonthData();
 
+        // Custom tooltip
+        const CustomTooltip = ({active, payload, label}: TooltipProps<ValueType, NameType>)  => {
+            if (active && payload && payload.length) {
+                console.log(payload)
+              return (
+                <div className="bg-white shadow-md shadow-[#b6b6b6] rounded-md p-2">
+                  <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
+                </div>
+              );
+            }
+          
+            return null;
+          };
+
         // if data is empty, display to user that there is no data to be displayed
         if(data === undefined || data.length === 0){
             return(<div className='flex justify-center items-center h-full w-full m-auto text-center text-3xl text-[#b6b6b631]'><p>Nothing To Be Displayed :(</p></div>)
@@ -133,7 +148,7 @@ export function PieChartDisplay() {
                                     <Cell key={`cell-${index}`} fill={SetPieSectionColor(entry)} />
                                 ))}
                             </Pie>
-                            <Tooltip></Tooltip>
+                            <Tooltip content={<CustomTooltip/>} cursor={false}></Tooltip>
                         </PieChart>
                     </ResponsiveContainer>
                     <div>
