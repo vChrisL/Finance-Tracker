@@ -9,6 +9,7 @@ import { NewExpenseMenu } from './components/NewExpenseMenu-component'
 import { RemainingBalance } from './components/RemainingBalance-component'
 import { DoubleClickInput } from './components/InputDoubleClick-component'
 import { useMonthlyBudgetStore } from './stores/monthlyBalance-store'
+import { PieChartDisplay } from './components/PieChartDisplay-component'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -82,7 +83,9 @@ function App() {
       <div className='flex flex-row gap-3 h-2/5'>
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
 
-        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>Pie Chart</div>
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>
+          <PieChartDisplay></PieChartDisplay>
+        </div>
         
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[20%] rounded-xl'>
           <RemainingBalance></RemainingBalance>
