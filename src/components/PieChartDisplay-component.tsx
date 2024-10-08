@@ -3,7 +3,6 @@ import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
 import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
-import { CSSProperties } from "react";
 
 
 export function PieChartDisplay() {
@@ -96,7 +95,7 @@ export function PieChartDisplay() {
         }
     }
 
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
+    const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent}: any) => {
       const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
       const x = cx + radius * Math.cos(-midAngle * RADIAN);
       const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -112,18 +111,18 @@ export function PieChartDisplay() {
         PopulateMonthData();
 
         // Custom tooltip
-        const CustomTooltip = ({active, payload, label}: TooltipProps<ValueType, NameType>)  => {
+        const CustomTooltip = ({active, payload}: TooltipProps<ValueType, NameType>)  => {
             if (active && payload && payload.length) {
                 console.log(payload)
-              return (
+                return (
                 <div className="bg-white shadow-md shadow-[#b6b6b6] rounded-md p-2">
-                  <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
+                    <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
                 </div>
-              );
+                );
             }
-          
+            
             return null;
-          };
+        };
 
         // if data is empty, display to user that there is no data to be displayed
         if(data === undefined || data.length === 0){
