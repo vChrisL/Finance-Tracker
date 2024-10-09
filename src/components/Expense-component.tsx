@@ -157,7 +157,7 @@ export function Expense({id, expenseData}: IExpenseProps){
     return(
         <>
         <div className="flex flex-row justify-start content-start items-center gap-2 p-1 px-4 min-h-12 bg-[#f9f9f9] shadow-md shadow-[#b6b6b6] rounded-lg">
-            <div className=" w-[2%] font-thin">{id}</div>
+            {/* <div className=" w-[2%] font-thin">{id}</div> */}
             {descComponent()}
             {amountComponent()}
             {dateComponent()}

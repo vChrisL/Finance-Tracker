@@ -112,6 +112,7 @@ export function PieChartDisplay() {
         }
         else{
             return(
+                <>
                 <div className="flex flex-row w-full h-full gap-10 items-center">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -133,6 +134,7 @@ export function PieChartDisplay() {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
+                </>
             )
         }
     }
