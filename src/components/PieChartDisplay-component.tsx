@@ -3,6 +3,7 @@ import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
 import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
+import { CSSProperties } from "react";
 
 
 export function PieChartDisplay() {
@@ -123,23 +124,24 @@ export function PieChartDisplay() {
             
             return null;
         };
+
         // Populate categories breakdown with respective colors
         const PopulateCateogies = (category: string) => {
             switch(category){
                 case 'Food':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Food}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Food}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Rent':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Rent}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Rent}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Transportation':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Transportation}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Transportation}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Utilities':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Utilities}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Utilities}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Personal':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Personal}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Personal}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Insurance':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Insurance}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Insurance}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
                 case 'Other':
-                    return <p className="font-semibold" style={{color: `${PIE_COLORS.Other}`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
+                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Other}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
             }
         }
 
@@ -172,7 +174,7 @@ export function PieChartDisplay() {
                     <div>
                         <ul>
                             {expenseCategories.map((category) => 
-                                <li className="list-disc mb-1 px-2 w-fit">{PopulateCateogies(category)}</li>
+                                <li className="list-disc mb-2 px-2 w-fit">{PopulateCateogies(category)}</li>
                             )}
                         </ul>
                     </div>
