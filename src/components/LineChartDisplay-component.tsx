@@ -7,9 +7,7 @@ import {
     Tooltip,
     TooltipProps,
 } from "recharts";
-import { expenseCategories } from "../data/expenseData";
-import { useExpensesList, useMonthStore } from "../data/expenseData";
-import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
+import { useExpensesList } from "../data/expenseData";
 import {
     NameType,
     ValueType,
@@ -18,15 +16,6 @@ import {
 export function LineChartDisplay() {
     // use storeExpenses store and selectedMonth store
     const masterExpenseList = useExpensesList((state) => state.storeExpenses);
-    const selectedMonth = useMonthStore((state) => state.selectedMonth);
-    const budget = useMonthlyBudgetStore((state) => state.budget);
-
-    // number format for currency
-    const numberFormat = Intl.NumberFormat("en-CA", {
-        style: "currency",
-        currency: "CAD",
-    });
-
     // use a map to populate this data dynamically depending on categories available
     let data: any = [];
 

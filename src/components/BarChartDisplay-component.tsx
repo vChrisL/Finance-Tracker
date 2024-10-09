@@ -1,7 +1,6 @@
 import { BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip, TooltipProps } from "recharts";
 import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
-import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 
@@ -9,34 +8,10 @@ export function BarChartDisplay() {
     // use storeExpenses store and selectedMonth store
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
-    const budget = useMonthlyBudgetStore(state => state.budget);
 
     // use a map to populate this data dynamically depending on categories available
     let data: any = [];
 
-    const BAR_COLORS = {
-        'Food': '#0088FE', 
-        'Rent': '#00C49F', 
-        'Transportation':'#FFBB28', 
-        'Utilities':'#FF8042', 
-        'Personal':'#a500fe', 
-        'Insurance':'#fe009d', 
-        'Other':'#17e6d1'
-    };
-
-    // Handles getting the total for each category
-    function getCategoryTotalSpending(targetCategory: string): number{
-        let tempTotal: number = 0;
-        // for each expense in the master expense list
-        masterExpenseList.forEach(expense => {
-            // if expense category is equal to the target category; add it's value to the total
-            if(expense.category === targetCategory && (expense.month === selectedMonth || selectedMonth === 'Yearly')){
-                tempTotal += expense.amount;
-            }
-        });
-
-        return tempTotal;
-    }
     // Handles populating the data array with data from the current month
     function PopulateMonthData(){
         let filteredMonths: any = [];
