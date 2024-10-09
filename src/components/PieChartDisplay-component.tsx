@@ -9,9 +9,6 @@ export function PieChartDisplay() {
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
 
-    // number format for currency
-    const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
-
     // use a map to populate this data dynamically depending on categories available
     let data: any = [];
 
@@ -26,19 +23,6 @@ export function PieChartDisplay() {
         'Other':'#d41e47'
     };
 
-    // Handles getting the total for each category
-    function getCategoryTotalSpending(targetCategory: string): number{
-        let tempTotal: number = 0;
-        // for each expense in the master expense list
-        masterExpenseList.forEach(expense => {
-            // if expense category is equal to the target category; add it's value to the total
-            if(expense.category === targetCategory && (expense.month === selectedMonth || selectedMonth === 'Yearly')){
-                tempTotal += expense.amount;
-            }
-        });
-
-        return tempTotal;
-    }
     // Handles populating the data array with data from the current month
     function PopulateMonthData(){
         let filteredMonths: any = [];
@@ -121,26 +105,6 @@ export function PieChartDisplay() {
             
             return null;
         };
-
-        // Populate categories breakdown with respective colors
-        const PopulateCateogies = (category: string) => {
-            switch(category){
-                case 'Food':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Food}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Rent':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Rent}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Transportation':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Transportation}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Utilities':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Utilities}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Personal':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Personal}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Insurance':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Insurance}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-                case 'Other':
-                    return <p className="font-semibold px-2 rounded-lg" style={{backgroundColor: `${PIE_COLORS.Other}aa`}}>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p>;
-            }
-        }
 
         // if data is empty, display to user that there is no data to be displayed
         if(data === undefined || data.length === 0){
