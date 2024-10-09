@@ -1,7 +1,6 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, TooltipProps } from "recharts";
 import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
-import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 
@@ -9,7 +8,6 @@ export function PieChartDisplay() {
     // use storeExpenses store and selectedMonth store
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
-    const budget = useMonthlyBudgetStore(state => state.budget);
 
     // number format for currency
     const numberFormat = Intl.NumberFormat("en-CA", {style: "currency", currency: 'CAD'})
@@ -25,7 +23,7 @@ export function PieChartDisplay() {
         'Utilities':'#FF8042', 
         'Personal':'#a500fe', 
         'Insurance':'#fe009d', 
-        'Other':'#17e6d1'
+        'Other':'#d41e47'
     };
 
     // Handles getting the total for each category
