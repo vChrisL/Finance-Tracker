@@ -10,6 +10,8 @@ import { RemainingBalance } from './components/RemainingBalance-component'
 import { DoubleClickInput } from './components/InputDoubleClick-component'
 import { useMonthlyBudgetStore } from './stores/monthlyBalance-store'
 import { PieChartDisplay } from './components/PieChartDisplay-component'
+import { BarChartDisplay } from './components/BarChartDisplay-component'
+import { LineChartDisplay } from './components/LineChartDisplay-component'
 
 // Unique KeyID for expenses; this value does not change
 let keyID: number = 0;
@@ -52,6 +54,10 @@ function App() {
     }
   }
 
+  function RenderBarOrLineChart(){
+
+  }
+
   return (
     <>
     <div className='flex flex-col gap-3 w-screen h-screen px-3 pb-3 box-border'>
@@ -81,7 +87,10 @@ function App() {
       </div>
 
       <div className='flex flex-row gap-3 h-2/5'>
-        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>Graph</div>
+        <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-1/2 rounded-xl'>
+            {/* Render line chart for yearly, else render a bar chart  */}
+            {selectedMonth === 'Yearly' ? <LineChartDisplay></LineChartDisplay> : <BarChartDisplay></BarChartDisplay>}
+        </div>
 
         <div className='bg-[#ffffff] shadow-md shadow-[#b6b6b6] w-[30%] rounded-xl'>
           <PieChartDisplay></PieChartDisplay>

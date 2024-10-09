@@ -3,7 +3,6 @@ import { expenseCategories } from "../data/expenseData";
 import { useExpensesList, useMonthStore } from "../data/expenseData";
 import { useMonthlyBudgetStore } from "../stores/monthlyBalance-store";
 import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
-import { CSSProperties } from "react";
 
 
 export function PieChartDisplay() {
@@ -117,7 +116,7 @@ export function PieChartDisplay() {
             if (active && payload && payload.length) {
                 return (
                     <div className="bg-white shadow-md shadow-[#b6b6b6] rounded-md p-2">
-                        <p className="label">{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
+                        <p>{`${payload[0].name} : $${payload[0].value?.toLocaleString()}`}</p>
                     </div>
                 );
             }
