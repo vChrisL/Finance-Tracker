@@ -113,9 +113,9 @@ export function LineChartDisplay() {
         } else {
             return (
                 <div className="flex flex-row w-full h-full gap-10 items-center">
-                    <LineChart width={900} height={250} data={data}>
+                    <LineChart width={900} height={250} data={data} >
                         <CartesianGrid strokeDasharray="2 2" />
-                        <XAxis dataKey="name" />
+                        <XAxis dataKey="name" fontSize={14} interval={0} />
                         <YAxis dataKey="value" />
                         <Tooltip
                             content={CustomTooltip}

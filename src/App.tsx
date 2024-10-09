@@ -54,9 +54,6 @@ function App() {
     }
   }
 
-  function RenderBarOrLineChart(){
-
-  }
 
   return (
     <>
