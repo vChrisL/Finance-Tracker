@@ -152,7 +152,7 @@ export function PieChartDisplay() {
         else{
             return(
                 <div className="flex flex-row w-full h-full gap-10 items-center">
-                    <ResponsiveContainer width="50%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
                             data={data}
@@ -160,7 +160,7 @@ export function PieChartDisplay() {
                             cy="50%"
                             labelLine={false}
                             label={renderCustomizedLabel}
-                            outerRadius={100}
+                            outerRadius={125}
                             fill="#8884d8"
                             dataKey="value"
                             >
@@ -171,13 +171,6 @@ export function PieChartDisplay() {
                             <Tooltip content={<CustomTooltip/>} cursor={false}></Tooltip>
                         </PieChart>
                     </ResponsiveContainer>
-                    <div>
-                        <ul>
-                            {expenseCategories.map((category) => 
-                                <li className="list-disc mb-2 px-2 w-fit">{PopulateCateogies(category)}</li>
-                            )}
-                        </ul>
-                    </div>
                 </div>
             )
         }
