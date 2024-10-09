@@ -67,7 +67,7 @@ export function RemainingBalance(){
             <div className="pl-5">
                 <ul className="pl-5">
                     {expenseCategories.map((category) => 
-                        <li className="list-disc mb-1 px-2 w-fit"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
+                        <li key={category} className="list-disc mb-1 px-2 w-fit"><p>{category}: {numberFormat.format(getCategoryTotalSpending(category))}</p></li>
                     )}
                 </ul>
             </div>
