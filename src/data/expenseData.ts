@@ -22,13 +22,13 @@ export const expenseCategories: string[] = [
 
 // Stores ALL expenses across every month
 let expensesMasterList = [
-    {id: 0, month: 'January', desc: 'my desc jan', amount: 100, date: '2024-01-20', category: 'Food'},
-    {id: 1, month: 'January', desc: 'January Expense', amount: 1000, date: '2024-01-03', category: 'Other'},
-    {id: 2, month: 'January', desc: 'January Expense3', amount: 13, date: '2024-01-02', category: 'Other'},
-    {id: 3, month: 'February', desc: 'Feb expense', amount: 4.99, date: '2024-02-07', category: 'Personal'},
-    {id: 4, month: 'February', desc: 'Feb expense2', amount: 499, date: '2024-02-06', category: 'Personal'},
-    {id: 5, month: 'March', desc: 'Mar expense', amount: 60, date: '2024-03-23', category: 'Food'},
-    {id: 6, month: 'March', desc: 'Mar expense2', amount: 40, date: '2024-03-20', category: 'Utilities'},
+    // {id: 0, month: 'January', desc: 'my desc jan', amount: 100, date: '2024-01-20', category: 'Food'},
+    // {id: 1, month: 'January', desc: 'January Expense', amount: 1000, date: '2024-01-03', category: 'Other'},
+    // {id: 2, month: 'January', desc: 'January Expense3', amount: 13, date: '2024-01-02', category: 'Other'},
+    // {id: 3, month: 'February', desc: 'Feb expense', amount: 4.99, date: '2024-02-07', category: 'Personal'},
+    // {id: 4, month: 'February', desc: 'Feb expense2', amount: 499, date: '2024-02-06', category: 'Personal'},
+    // {id: 5, month: 'March', desc: 'Mar expense', amount: 60, date: '2024-03-23', category: 'Food'},
+    // {id: 6, month: 'March', desc: 'Mar expense2', amount: 40, date: '2024-03-20', category: 'Utilities'},
 ] as IExpenseData[]
 
 
