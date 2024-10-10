@@ -8,7 +8,7 @@ interface IProgressBarProps {
     high: number,
 }
 
-export function ProgressBar({value, low, mid, high}: IProgressBarProps){
+export function ProgressBar({value, low, high}: IProgressBarProps){
 
     // colors for low mid and high values
     const lowColor: string = '#22c55e';
