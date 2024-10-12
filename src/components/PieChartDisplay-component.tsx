@@ -9,7 +9,7 @@ export function PieChartDisplay() {
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
 
-    // use a map to populate this data dynamically depending on categories available
+    // pie chart data
     let data: any = [];
 
     const RADIAN = Math.PI / 180;

@@ -16,7 +16,7 @@ import {
 export function LineChartDisplay() {
     // use storeExpenses store and selectedMonth store
     const masterExpenseList = useExpensesList((state) => state.storeExpenses);
-    // use a map to populate this data dynamically depending on categories available
+    // line chart data
     let data: any = [];
 
     // Handles populating the data array with data from the current month

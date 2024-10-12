@@ -9,7 +9,7 @@ export function BarChartDisplay() {
     const masterExpenseList = useExpensesList(state => state.storeExpenses);
     const selectedMonth = useMonthStore(state => state.selectedMonth);
 
-    // use a map to populate this data dynamically depending on categories available
+    // bar chart data
     let data: any = [];
 
     // Handles populating the data array with data from the current month
