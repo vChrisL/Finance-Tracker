@@ -3,9 +3,9 @@ Track your financial history and view your monthly spending habits.\
 Easily visualize your spending with graphs and pie charts featuring monthly and yearly views.
 
 ## Built With
-React + Vite
-Tailwind CSS
-Zustand
+React + Vite \
+Tailwind CSS \
+Zustand \
 Recharts
 
 ## Monthly Spending View
