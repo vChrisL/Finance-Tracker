@@ -1,6 +1,6 @@
 # Financial Tracker
 Track your financial history and view your monthly spending habits.\
-Easily visualize your spending with graphs and pie charts with a monthly and yearly view.\
+Easily visualize your spending with graphs and pie charts featuring monthly and yearly views.
 
 ## Built With
 React + Vite
