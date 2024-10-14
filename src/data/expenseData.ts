@@ -78,5 +78,3 @@ export const useMonthStore = create<MonthStore>((set) => ({
         set(() => ({selectedMonth: newMonth}))
     }
 }))
-
-// use local storage

@@ -6,9 +6,11 @@ type MonthlyBudget = {
 }
 
 export const useMonthlyBudgetStore = create<MonthlyBudget>((set) => ({
-    budget: 5000,
+    budget: JSON.parse(localStorage.getItem('monthlyBudget') ?? '5000'),
 
     updateBudget: (newBudget) => {
-        set(() => ({budget: newBudget}))
+        set(() => ({budget: newBudget}));
+        // Store monthly budget into localstorage
+        localStorage.setItem('monthlyBudget', JSON.stringify(newBudget));
     }
 }))
