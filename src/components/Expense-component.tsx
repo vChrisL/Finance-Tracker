@@ -40,9 +40,9 @@ export function Expense({id, expenseData}: IExpenseProps){
                     onChange={(e) => setDescription(e.target.value)} 
                     tabIndex={0} 
                     onBlur={() => (
-                        setIsEditingField({...isEditingField, editingDesc: false}), 
                         expenseData.desc = description, 
-                        updateMasterList()
+                        updateMasterList(),
+                        setIsEditingField({...isEditingField, editingDesc: false}) 
                     )}/>
                 </div>
             )
@@ -68,9 +68,9 @@ export function Expense({id, expenseData}: IExpenseProps){
                     onChange={(e) => setAmount(parseFloat(e.target.value))} 
                     tabIndex={0} 
                     onBlur={() => (
-                        setIsEditingField({...isEditingField, editingAmount: false}), 
-                        expenseData.amount = amount, 
-                        updateMasterList()
+                        expenseData.amount = amount,
+                        updateMasterList(),
+                        setIsEditingField({...isEditingField, editingAmount: false})
                     )}/>
                 </div>
             )
@@ -100,9 +100,9 @@ export function Expense({id, expenseData}: IExpenseProps){
                     onChange={(e) => setDate(e.target.value)} 
                     tabIndex={0} 
                     onBlur={() => (
-                        setIsEditingField({...isEditingField, editingDate: false}), 
                         expenseData.date = date, 
-                        updateMasterList()
+                        updateMasterList(),
+                        setIsEditingField({...isEditingField, editingDate: false}) 
                     )}/>
                 </div>
             )
@@ -125,9 +125,9 @@ export function Expense({id, expenseData}: IExpenseProps){
                     onChange={(e) => setCategory(e.target.value)} 
                     tabIndex={0} 
                     onBlur={() => (
-                        setIsEditingField({...isEditingField, editingCategory: false}), 
                         expenseData.category = category, 
-                        updateMasterList()
+                        updateMasterList(),
+                        setIsEditingField({...isEditingField, editingCategory: false}) 
                     )}>
                         {expenseCategories.map((category) => 
                             <option value={category}>{category}</option>
